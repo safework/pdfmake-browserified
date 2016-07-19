@@ -27,11 +27,12 @@
     "aliasify": "^1.7.2",
     "angular": "^1.4.1",
     "brfs": "1.0.2",
+    "browserify": "^13.0.1",
     "browserify-derequire": "^0.9.4",
     "connect": "^3.3.5",
     "minifyify": "^7.0.1",
     "open": "0.0.5",
-    "pdfmake": "0.1.18",
+    "pdfmake": "git://github.com/safework/pdfmake.git#ee0bb8e4756c2fb74fa72e7066505077f7f733f1",
     "serve-static": "^1.9.3"
   },
   "browserify": {
