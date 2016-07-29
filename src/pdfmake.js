@@ -3,17 +3,17 @@
 /* global BlobBuilder */
 'use strict';
 
-var vfsDefault = require('../vfs-fonts/roboto.js');
+var vfsDefault = require('../vfs-fonts/custom-fonts/fonts.json');
 var PdfPrinter = require('pdfmake');
 var saveAs = require('../libs/fileSaver');
 var vfs = require('./virtual-fs');
 
 var defaultClientFonts = {
-	Roboto: {
-		normal: 'Roboto-Regular.ttf',
-		bold: 'Roboto-Medium.ttf',
-		italics: 'Roboto-Italic.ttf',
-		bolditalics: 'Roboto-Italic.ttf'
+	Cambria: {
+		normal: 'Cambria.ttf'
+	},
+	TickCross: {
+		normal: 'TickCross.ttf'
 	}
 };
 
