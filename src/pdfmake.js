@@ -9,8 +9,11 @@ var saveAs = require('../libs/fileSaver');
 var vfs = require('./virtual-fs');
 
 var defaultClientFonts = {
-	Cambria: {
-		normal: 'Cambria.ttf'
+	Roboto: {
+		normal: 'Roboto-Regular.ttf',
+		bold: 'Roboto-Medium.ttf',
+		italics: 'Roboto-Italic.ttf',
+		bolditalics: 'Roboto-Italic.ttf'
 	},
 	TickCross: {
 		normal: 'TickCross.ttf'

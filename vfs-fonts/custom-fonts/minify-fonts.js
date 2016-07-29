@@ -8,16 +8,21 @@ var fontmin = new Fontmin()
       hinting: false
     })
   )
-  .src('cambria.ttf')
+  .src('roboto/*.ttf')
 
 fontmin.run(function (err, files) {
   if (err) {
     throw err;
   }
 
-  fs.writeFileSync('fonts.js', JSON.stringify({
-    'Cambria.ttf': files[0]._contents.toString('base64'),
+  let fonts = {
     'TickCross.tff': fs.readFileSync('tick-cross.ttf').toString('base64')
-  }));
+  }
+
+  for (let font of files) {
+    fonts[font.history[0].split('/').pop()] = font._contents.toString('base64')
+  }
+
+  fs.writeFileSync('fonts.js', JSON.stringify(fonts));
 
 });
