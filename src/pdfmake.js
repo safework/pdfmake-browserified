@@ -15,8 +15,8 @@ var defaultClientFonts = {
 		italics: 'Roboto-Italic.ttf',
 		bolditalics: 'Roboto-Italic.ttf'
 	},
-	TickCross: {
-		normal: 'TickCross.ttf'
+	FontAwesome: {
+		normal: 'FontAwesome.ttf'
 	}
 };
 

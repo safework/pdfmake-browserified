@@ -1,7 +1,8 @@
 var Fontmin = require('fontmin');
 var fs = require('fs')
 
-var fontmin = new Fontmin()
+let roboto = new Promise((resolve, reject) => {
+  let fontmin = new Fontmin()
   .use(
     Fontmin.glyph({
       text: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`~!@#$%^&*()_+-=[]{}\\|;:\'",./<>?÷√π',
@@ -9,20 +10,48 @@ var fontmin = new Fontmin()
     })
   )
   .src('roboto/*.ttf')
+  fontmin.run(function (err, files) {
+    if (err) {
+      throw err;
+    }
 
-fontmin.run(function (err, files) {
-  if (err) {
-    throw err;
-  }
+    let fonts = {}
 
-  let fonts = {
-    'TickCross.tff': fs.readFileSync('tick-cross.ttf').toString('base64')
-  }
+    for (let font of files) {
+      fonts[font.history[0].split('/').pop()] = font._contents.toString('base64')
+    }
 
-  for (let font of files) {
-    fonts[font.history[0].split('/').pop()] = font._contents.toString('base64')
-  }
+    resolve(fonts)
 
-  fs.writeFileSync('fonts.js', JSON.stringify(fonts));
+  });
+})
 
+let fontAwesome = new Promise((resolve, reject) => {
+  let fontmin = new Fontmin()
+  .use(
+    Fontmin.glyph({
+      text: '\u{F00C}\u{F00D}',
+      hinting: false
+    })
+  )
+  .src('FontAwesome.ttf')
+  fontmin.run(function (err, files) {
+    if (err) {
+      throw err;
+    }
+
+    let fonts = {}
+
+    for (let font of files) {
+      fonts[font.history[0].split('/').pop()] = font._contents.toString('base64')
+    }
+
+    resolve(fonts)
+
+  });
 });
+
+Promise.all([roboto, fontAwesome])
+  .then((fonts) => {
+    fs.writeFileSync('fonts.json', JSON.stringify(fonts.reduce((carry, curr) => (Object.assign(carry, curr), carry), {})));
+  })
