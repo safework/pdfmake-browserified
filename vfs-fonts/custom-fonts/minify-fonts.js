@@ -10,6 +10,8 @@ let roboto = new Promise((resolve, reject) => {
     })
   )
   .src('roboto/*.ttf')
+  .dest('built-fonts')
+
   fontmin.run(function (err, files) {
     if (err) {
       throw err;
@@ -35,6 +37,8 @@ let fontAwesome = new Promise((resolve, reject) => {
     })
   )
   .src('FontAwesome.ttf')
+  .dest('built-fonts')
+
   fontmin.run(function (err, files) {
     if (err) {
       throw err;
